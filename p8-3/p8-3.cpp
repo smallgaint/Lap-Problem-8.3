@@ -8,9 +8,16 @@ int convertRomanToInt(string s);
 
 
 int main() {
-	string nums = "IVXLCDM";
-	
-	cout << convertRomanToInt(nums) << endl;
+	string nums;
+
+	while (true) {
+		cout << "Enter a Roman number or Q to quit: ";
+		cin >> nums;
+		if (nums == "Q") break;
+
+		cout << nums << " = " << convertRomanToInt(nums) << endl;
+	}
+	return 0;
 }
 
 int romanCharValue(char c) {
