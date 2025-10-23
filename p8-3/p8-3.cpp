@@ -4,14 +4,13 @@
 using namespace std;
 
 int romanCharValue(char c);
+int convertRomanToInt(string s);
+
 
 int main() {
 	string nums = "IVXLCDM";
-	int value = 0;
-	for (char c : nums) {
-		value += romanCharValue(c);
-	}
-	cout << value << endl;
+	
+	cout << convertRomanToInt(nums) << endl;
 }
 
 int romanCharValue(char c) {
@@ -23,5 +22,19 @@ int romanCharValue(char c) {
 	else if (c == 'D') return 500;
 	else if (c == 'M') return 1000;
 	else return 0; // Invalid character
+}
 
+int convertRomanToInt(string s) {
+	int total = 0;
+	while (s.length() > 0) {
+		if (s.length() == 1 || romanCharValue(s[0]) >= romanCharValue(s[1])) {
+			total += romanCharValue(s[0]);
+			s = s.substr(1);
+		}
+		else {
+			total += romanCharValue(s[1]) - romanCharValue(s[0]);
+			s = s.substr(2);
+		}
+	}
+	return total;
 }
